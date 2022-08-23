@@ -14,6 +14,9 @@ public class ValidateCreateBookingBehavior : ValidatorBehaviorBase<CreateBooking
         v => v.RuleFor(c => c.StartDate)
             .LessThan(c => c.EndDate)
             .WithMessage("The start date must be before the end date"),
+        v => v.RuleFor(r => r.StartDate)
+            .GreaterThanOrEqualTo(r => DateTime.Now.Date)
+            .WithMessage("The start date cannot be earlier than today"),
     };
 
     protected override IError CreateError(ValidationResult result) => new InvalidRequestError(result);
