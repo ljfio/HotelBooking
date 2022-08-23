@@ -36,7 +36,7 @@ public class HotelController : ApiControllerBase
 
         if (response.IsFailed)
         {
-            return NotFound(response.Reasons);
+            return BadRequest(response.Reasons);
         }
         
         return Ok(response.Value);
