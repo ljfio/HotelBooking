@@ -17,28 +17,11 @@ public class HotelController : ApiControllerBase
 
     [HttpGet]
     [Route("")]
-    public async Task<IActionResult> GetHotelsAsync(string? name = null)
-    {
-        var request = new GetHotelsRequest(name);
-
-        var response = await Mediator.Send(request);
-
-        return Ok(response);
-    }
+    public async Task<IActionResult> GetHotelsAsync(string? name = null) => 
+        await MediateAsync(new GetHotelsRequest(name));
 
     [HttpGet]
     [Route("{id:guid}/rooms")]
-    public async Task<IActionResult> GetAvailabilityAsync(Guid id, [FromQuery]RoomAvailabilityModel model)
-    {
-        var request = new RoomAvailabilityRequest(id, model.StartDate.Date, model.EndDate.Date, model.NumberOfPeople);
-
-        var response = await Mediator.Send(request);
-
-        if (response.IsFailed)
-        {
-            return BadRequest(response.Reasons);
-        }
-        
-        return Ok(response.Value);
-    }
+    public async Task<IActionResult> GetAvailabilityAsync(Guid id, [FromQuery]RoomAvailabilityModel model) =>
+        await MediateAsync(new RoomAvailabilityRequest(id, model.StartDate.Date, model.EndDate.Date, model.NumberOfPeople));
 }

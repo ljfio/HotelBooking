@@ -2,7 +2,7 @@ using FluentResults;
 
 namespace HotelBooking.Core.Errors;
 
-public class RoomsUnavailableError: Error
+public class RoomsUnavailableError: Error, INotFoundError
 {
     public RoomsUnavailableError()
     {

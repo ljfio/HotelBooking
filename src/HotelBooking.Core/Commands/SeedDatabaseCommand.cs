@@ -1,3 +1,4 @@
+using FluentResults;
 using Mediator;
 
 namespace HotelBooking.Core.Commands;

@@ -18,28 +18,10 @@ public class BookingController : ApiControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateBookingModel model)
-    {
-        var request = new CreateBookingCommand(model.StartDate.Date, model.EndDate.Date, model.Rooms);
-
-        var response = await Mediator.Send(request);
-
-        if (response.IsFailed)
-        {
-            return BadRequest(response.Reasons);
-        }
-
-        return Ok(response);
-    }
+    public async Task<IActionResult> CreateAsync([FromBody] CreateBookingModel model) => 
+        await MediateAsync(new CreateBookingCommand(model.StartDate.Date, model.EndDate.Date, model.Rooms));
 
     [HttpGet]
     [Route("{id:guid}")]
-    public async Task<IActionResult> GetAsync(Guid id)
-    {
-        var request = new GetBookingRequest(id);
-
-        var response = await Mediator.Send(request);
-
-        return Ok(response);
-    }
+    public async Task<IActionResult> GetAsync(Guid id) => await MediateAsync(new GetBookingRequest(id));
 }

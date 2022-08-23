@@ -1,9 +1,10 @@
+using FluentResults;
 using HotelBooking.Core.Responses;
 using Mediator;
 
 namespace HotelBooking.Core.Requests;
 
-public class GetHotelsRequest: IRequest<GetHotelsResponse>
+public class GetHotelsRequest: IRequest<Result<GetHotelsResponse>>
 {
     public GetHotelsRequest(string name)
     {

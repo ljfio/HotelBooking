@@ -28,6 +28,6 @@ public class CreateBookingHandler : ICommandHandler<CreateBookingCommand, Result
         
         var id = await _bookingService.CreateBookingAsync(command.Rooms, command.StartDate, command.EndDate);
             
-        return Result.Ok<CreateBookingResponse>(new(id));
+        return Result.Ok(new CreateBookingResponse(id));
     }
 }

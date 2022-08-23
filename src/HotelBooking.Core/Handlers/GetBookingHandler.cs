@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentResults;
 using HotelBooking.Core.Models;
 using HotelBooking.Core.Requests;
 using HotelBooking.Core.Responses;
@@ -7,7 +8,7 @@ using Mediator;
 
 namespace HotelBooking.Core.Handlers;
 
-public class GetBookingHandler : IRequestHandler<GetBookingRequest, GetBookingResponse>
+public class GetBookingHandler : IRequestHandler<GetBookingRequest, Result<GetBookingResponse>>
 {
     private readonly IBookingService _bookingService;
     private readonly IMapper _mapper;
@@ -18,15 +19,15 @@ public class GetBookingHandler : IRequestHandler<GetBookingRequest, GetBookingRe
         _mapper = mapper;
     }
 
-    public async ValueTask<GetBookingResponse> Handle(GetBookingRequest request, CancellationToken cancellationToken)
+    public async ValueTask<Result<GetBookingResponse>> Handle(GetBookingRequest request, CancellationToken cancellationToken)
     {
         var entity =  await _bookingService.GetBookingAsync(request.Id);
 
         var booking = _mapper.Map<BookingModel>(entity);
 
-        return new GetBookingResponse()
+        return Result.Ok(new GetBookingResponse()
         {
             Booking = booking,
-        };
+        });
     }
 }

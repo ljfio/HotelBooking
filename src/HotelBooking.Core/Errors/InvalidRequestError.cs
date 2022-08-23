@@ -3,7 +3,7 @@ using FluentValidation.Results;
 
 namespace HotelBooking.Core.Errors;
 
-public class InvalidRequestError : Error
+public class InvalidRequestError : Error, IBadRequestError
 {
     public InvalidRequestError(ValidationResult result)
     {

@@ -14,24 +14,9 @@ public class SeedController : ApiControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> SeedAsync()
-    {
-        var request = new SeedDatabaseCommand();
-
-        await Mediator.Send(request);
-
-        return Ok();
-    }
+    public async Task<IActionResult> SeedAsync() => await MediateAsync(new SeedDatabaseCommand());
 
     [HttpPost]
     [Route("reset")]
-    public async Task<IActionResult> ResetAsync()
-    {
-        var request = new ResetDatabaseCommand();
-
-        await Mediator.Send(request);
-
-        return Ok();
-
-    }
+    public async Task<IActionResult> ResetAsync() => await MediateAsync(new ResetDatabaseCommand());
 }

@@ -1,14 +1,10 @@
 using System;
-using System.Threading.Tasks;
 using HotelBooking.Core.Extensions;
 using HotelBooking.Infrastructure;
-using Mediator;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using HotelBooking.Mediator;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

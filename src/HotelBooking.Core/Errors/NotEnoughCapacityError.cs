@@ -2,7 +2,7 @@ using FluentResults;
 
 namespace HotelBooking.Core.Errors;
 
-public class NotEnoughCapacityError : Error
+public class NotEnoughCapacityError : Error, INotFoundError
 {
     public NotEnoughCapacityError()
     {
